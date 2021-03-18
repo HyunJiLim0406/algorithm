@@ -526,5 +526,7 @@ $RECYCLE.BIN/
 *.sln
 *.vcxproj
 *.vcxproj.filters
+.idea/
+*.txt
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,vs,clion,c++
