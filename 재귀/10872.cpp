@@ -2,7 +2,7 @@
 using namespace std;
 
 int factorial(int N) {
-	if (N == 0 || N == 1) // 0!=1 ÀÎ°Å ±î¸Ô¾î¼­ ÇÑ ¹ø Æ²¸²
+	if (N == 0 || N == 1) // 0!=1 ì¸ê±° ê¹Œë¨¹ì–´ì„œ í•œ ë²ˆ í‹€ë¦¼
 		return 1;
 	else
 		return N * factorial(N - 1);
