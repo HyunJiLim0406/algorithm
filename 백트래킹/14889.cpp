@@ -1,8 +1,9 @@
 #include <iostream>
 #include <cmath>
+
 using namespace std;
 
-bool isTeam[20] = { 0, };
+bool isTeam[20] = {0,};
 int pow_matrix[20][20];
 int N, min_pow = 1000;
 
@@ -24,12 +25,11 @@ void split_team(int index, int player) {
         int result = cal_min();
         if (result < min_pow)
             min_pow = result;
-        return; //이유도 모르게 계속 틀렸다고 해서 반례 다 돌려보고 했는데 걍 이거 리턴 안해서였음
     }
-    for (int i = player + 1; i <= N; i++) { //조합이라고 생각하고 찾아야 중복 제거 가능
+    for (int i = player; i < N; i++) { //오름차순으로 뽑아서 중복 제거
         if (!isTeam[i]) {
             isTeam[i] = true; //내려감
-            split_team(index + 1, i);
+            split_team(index + 1, i + 1);
             isTeam[i] = false; //올라감
         }
     }

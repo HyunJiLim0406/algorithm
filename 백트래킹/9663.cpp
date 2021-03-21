@@ -1,10 +1,11 @@
 #include <iostream>
 #include <cmath>
+
 using namespace std;
 
 int N;
 int tot_cnt = 0;
-int visited[15] = { 0, }; //2차원 bool 배열로 했더니 시간초과
+int visited[15] = {0,}; //2차원 bool 배열로 했더니 시간초과
 
 bool promising(int index) {
     int k = 1;
@@ -17,14 +18,13 @@ bool promising(int index) {
 }
 
 void queens(int cnt) {
-    if (promising(cnt)) {
-        if (cnt == N)
-            tot_cnt++;
-        else {
-            for (int i = 1; i <= N; i++) {
-                visited[cnt + 1] = i;
+    if (cnt == N)
+        tot_cnt++;
+    else {
+        for (int i = 1; i <= N; i++) {
+            visited[cnt + 1] = i;
+            if (promising(cnt + 1))
                 queens(cnt + 1);
-            }
         }
     }
 }
