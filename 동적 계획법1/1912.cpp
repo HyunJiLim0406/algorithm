@@ -10,7 +10,7 @@ int main() { //배열쓰면 시간초과될듯?
         cin >> input;
         if (current_sum + input >= 0) {
             current_sum += input;
-            if (current_sum > max) //지금까지의 연속합이 최대값보다 크면 갱신
+            if (current_sum > max) //지금까지의 연속합이 최댓값보다 크면 갱신
                 max = current_sum;
         }
         else {

@@ -5,7 +5,7 @@ using namespace std;
 int stair[301] = { 0, };
 int stair_max[301] = { 0, }; //배열 하나에 갱신하지 말고 최대값만 저장할 배열을 생각했어야 함
 
-int jump_stair(int num) { //나중에 다시 풀어보기. 어려웠음
+int jump_stair(int num) {
     for (int i = 0; i <= num; i++) {
         if (i < 3) {
             for (int j = 0; j <= i; j++)
