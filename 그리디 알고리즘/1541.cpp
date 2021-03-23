@@ -1,33 +1,35 @@
 #include <iostream>
-#include <cstring>
+#include <string>
+#include <vector>
+#include <stack>
+
 using namespace std;
 
-int calc(char* expression, int start, int end) {
-    int num_cnt = 0, stack_cnt = 0, sum = 0;
-    int num_arr[51] = { 0, };
-    int num_stack[5] = { 0, };
+int calc(string expression, int start, int end) {
+    int sum = 0;
+    vector<int> num_arr;
+    stack<int> num_stack;
 
     for (int i = start; i <= end; i++) {
         if (expression[i] == '-' || expression[i] == '+' || i == end) { //op 또는 배열의 끝이면 스택에 쌓인 수를 빼서 가공
             int temp = 0;
             int mul = 1;
-            for (int j = stack_cnt - 1; j >= 0; j--) {
-                temp = temp + (num_stack[j] * mul);
+            while (!num_stack.empty()) {
+                temp += (num_stack.top() * mul);
+                num_stack.pop();
                 mul *= 10;
             }
-            num_arr[num_cnt++] = temp; //가공한 수를 배열에 넣어줌
-            stack_cnt = 0;
-        }
-        else //숫자를 스택에 넣어줌
-            num_stack[stack_cnt++] = expression[i] - '0';
+            num_arr.push_back(temp);
+        } else //숫자를 스택에 넣어줌
+            num_stack.push(expression[i] - '0');
     }
-    for (int i = 0; i < num_cnt; i++) //배열에 쌓인 수를 모두 더함
+    for (int i = 0; i < num_arr.size(); i++) //배열에 쌓인 수를 모두 더함
         sum += num_arr[i];
     return sum;
 }
 
-int bracket(char* expression) {
-    int length = strlen(expression);
+int bracket(string expression) {
+    int length = expression.size();
     int minus_point = 60;
 
     for (int i = 0; i < length; i++) {
@@ -43,8 +45,8 @@ int bracket(char* expression) {
 }
 
 int main() {
-    char m_expression[51];
+    string expression;
 
-    cin >> m_expression;
-    cout << bracket(m_expression);
+    cin >> expression;
+    cout << bracket(expression);
 }
