@@ -1,15 +1,15 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include <cstring>
+#include <string>
 using namespace std;
 
 struct outfit { //옷 정보 저장
-    char name[21];
-    char kind[21];
+    string name;
+    string kind;
 };
 
 struct kindCnt { //종류별 옷의 개수 저장
-    char kind[21];
+    string kind;
     int cnt;
 };
 outfit* clothes = new outfit[30];
@@ -25,14 +25,14 @@ int ootd(int n) {
     for (int i = 0; i < n; i++) {
         isExist = false;
         for (int j = 0; j < cnt; j++) { //이미 있던 종류 옷이면 개수만 증가하고 break
-            if (strcmp(arr[j].kind, clothes[i].kind) == 0) {
+            if(arr[j].kind.compare(clothes[i].kind)==0){
                 arr[j].cnt++;
                 isExist = true;
                 break;
             }
         }
         if (!isExist) { //새로운 종류의 옷이면 새로 입력
-            strcpy(arr[cnt].kind, clothes[i].kind);
+            arr[cnt].kind = clothes[i].kind;
             arr[cnt++].cnt++;
         }
     }

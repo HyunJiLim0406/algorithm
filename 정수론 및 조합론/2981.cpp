@@ -6,7 +6,7 @@ using namespace std;
 long long num_arr[100];
 vector<int> v;
 
-int gcd(int a, int b) { //유클리드 호제법(?)으로 최대공약수 구함
+int gcd(int a, int b) { //유클리드 호제법
     int temp, n;
 
     if (a < b) {
@@ -22,7 +22,7 @@ int gcd(int a, int b) { //유클리드 호제법(?)으로 최대공약수 구함
     return a;
 }
 
-void findM(int N) { //제일 앞에 두개 빼고 그 뒤부터 인접한 애들끼리 빼서 최대공약수를 구하면 된다는데 이유는 모름
+void findM(int N) { //제일 앞에 두개 빼고(초기값) 그 뒤부터 인접한 애들끼리 빼서 최대공약수 구하기
     long long g = num_arr[1] - num_arr[0];
 
     for (int i = 2; i < N; i++)
@@ -36,7 +36,7 @@ void findM(int N) { //제일 앞에 두개 빼고 그 뒤부터 인접한 애들
     v.push_back(g);
 }
 
-int main() { //수학적 지식이 많이 필요한 듯 함
+int main() { //수학적 지식 필요
     cin.tie(NULL);
     ios_base::sync_with_stdio(false);
 
