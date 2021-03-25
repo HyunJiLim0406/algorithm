@@ -6,19 +6,18 @@ using namespace std;
 int num_arr[1000000];
 
 void oaken(int length) {
-    stack<int> temp; //오큰수를 구하지 못한 수의 index를 저장
-    temp.push(0);
+    stack<int> index; //오큰수를 구하지 못한 수의 index를 저장
 
-    for (int i = 1; i < length; i++) {
-        while (!temp.empty() && num_arr[i] > num_arr[temp.top()]) { //num_arr[i]가 오큰수가 될 수 있는가?
-            num_arr[temp.top()] = num_arr[i];
-            temp.pop();
+    for (int i = 0; i < length; i++) {
+        while (!index.empty() && num_arr[i] > num_arr[index.top()]) { //num_arr[i]가 오큰수가 될 수 있는가?
+            num_arr[index.top()] = num_arr[i];
+            index.pop();
         }
-        temp.push(i);
+        index.push(i);
     }
-    while (!temp.empty()) { //여전히 스택에 남아있는 수라면 오큰수가 없는 것
-        num_arr[temp.top()] = -1;
-        temp.pop();
+    while (!index.empty()) { //여전히 스택에 남아있는 수라면 오큰수가 없는 것
+        num_arr[index.top()] = -1;
+        index.pop();
     }
 }
 

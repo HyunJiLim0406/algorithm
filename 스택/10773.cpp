@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+
 using namespace std;
 
 int main() {
@@ -9,15 +10,14 @@ int main() {
     cin >> K;
     for (int i = 0; i < K; i++) {
         cin >> input;
-        if (input == 0) { //0이면 맨 위 숫자 가져오고 pop 한 뒤 sum에서 뺌
-            int num = s.top();
+        if (input == 0) //0이면 가장 위에 있던 수 pop으로 뺌
             s.pop();
-            sum -= num;
-        }
-        else { //0이 아니면 더해주고
+        else
             s.push(input);
-            sum += input;
-        }
+    }
+    while (!s.empty()) { //스택에 쌓인 모든 수 더해줌
+        sum += s.top();
+        s.pop();
     }
     cout << sum;
 }
