@@ -2,8 +2,10 @@
 
 using namespace std;
 
-long long divide(long long A, long long B, long long C) {
-    long long tmp;
+typedef long long ll;
+
+ll divide(ll A, ll B, ll C) {
+    ll tmp;
 
     if (B == 1) //더이상 나눌 수 없음
         return A % C;
@@ -17,7 +19,7 @@ long long divide(long long A, long long B, long long C) {
 }
 
 int main() {
-    long long A, B, C;
+    ll A, B, C;
 
     cin >> A >> B >> C;
     cout << divide(A, B, C);

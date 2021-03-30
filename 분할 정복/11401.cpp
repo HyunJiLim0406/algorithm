@@ -2,20 +2,21 @@
 
 using namespace std;
 
-const long long DIVISOR = 1000000007;
+typedef long long ll;
+const ll DIVISOR = 1000000007;
 
-long long fact(long long num) { //팩토리얼 계산
-    long long res = 1;
+ll fact(ll num) { //팩토리얼 계산
+    ll res = 1;
 
-    for (long long i = 1; i <= num; i++) {
+    for (ll i = 1; i <= num; i++) {
         res *= i;
         res %= DIVISOR;
     }
     return res;
 }
 
-long long divide(long long A, long long B) {
-    long long tmp;
+ll divide(ll A, ll B) {
+    ll tmp;
 
     if (B == 1) //더이상 나눌 수 없음
         return A % DIVISOR;
@@ -29,11 +30,11 @@ long long divide(long long A, long long B) {
 }
 
 int main() {
-    long long N, K;
+    ll N, K;
 
     cin >> N >> K;
-    long long numerator = fact(N); //분자
-    long long denominator = (fact(K) * fact(N - K)) % DIVISOR; //분모
+    ll numerator = fact(N); //분자
+    ll denominator = (fact(K) * fact(N - K)) % DIVISOR; //분모
     denominator = divide(denominator, DIVISOR - 2); //페르마의 소정리로 구한 역원
     cout << (numerator * denominator) % DIVISOR;
 }
