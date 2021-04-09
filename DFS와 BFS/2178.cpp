@@ -7,7 +7,7 @@ using namespace std;
 
 //범위 초과 때문에 상하좌우 한줄씩 추가
 int matrix[102][102], N, M;
-pair<int, int> dir[4] = {{-1, 0},  //상
+pair<int, int> dir[4] = {{-1, 0}, //상
                          {1, 0},  //하
                          {0, -1}, //좌
                          {0, 1}}; //우
