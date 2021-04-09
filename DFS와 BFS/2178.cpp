@@ -20,9 +20,9 @@ void bfs(pair<int, int> start) { //큐로 구현
         int col = q.front().first;
         int row = q.front().second;
         q.pop();
-        for (int j = 0; j < 4; j++) { //상하좌우 체크
-            int next_col = col + dir[j].first;
-            int next_row = row + dir[j].second;
+        for (int i = 0; i < 4; i++) { //상하좌우 체크
+            int next_col = col + dir[i].first;
+            int next_row = row + dir[i].second;
             if (matrix[next_col][next_row] == 1) {
                 matrix[next_col][next_row] = matrix[col][row] + 1; //matrix[next_col][next_row]를 오기 위해 몇 번 거쳐야 하는가?
                 q.push(make_pair(next_col, next_row));
