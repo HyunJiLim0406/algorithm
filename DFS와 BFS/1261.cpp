@@ -6,7 +6,7 @@
 using namespace std;
 
 struct pos_info { //열, 행, 파괴 횟수
-    int col_c, row_c, crush_c;
+    int col_s, row_s, crush_s;
 };
 
 int N, M;
@@ -22,9 +22,9 @@ int bfs() {
     dq.push_back({0, 0, 0});
     matrix[0][0] = -1; //visited 처리
     while (!dq.empty()) {
-        int col = dq.front().col_c;
-        int row = dq.front().row_c;
-        int crush = dq.front().crush_c;
+        int col = dq.front().col_s;
+        int row = dq.front().row_s;
+        int crush = dq.front().crush_s;
         dq.pop_front();
         if ((col == (N - 1)) && (row == (M - 1))) //종료 조건
             return crush;
