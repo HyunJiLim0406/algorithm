@@ -11,11 +11,11 @@ void bfsPromising(int source, int dest, int flag) {
     if ((dest >= 0) && (dest <= MAX) && (pos[dest] == 0)) { //방문한 적 없는 좌표
         if (flag) {
             pos[dest] = pos[source]; //여기까지 오는데 걸리는 최소 시간
-            dq.push_front(dest);
+            dq.push_front(dest); //앞에 삽입
         }
         else {
             pos[dest] = pos[source] + 1; //여기까지 오는데 걸리는 최소 시간
-            dq.push_back(dest);
+            dq.push_back(dest); //뒤에 삽입
         }
     }
 }
