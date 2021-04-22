@@ -9,7 +9,7 @@ int main() {
     cin.tie(NULL);
 
     string input;
-    stack<char> s1, s2, s3;
+    stack<char> s1, s2;
     int M;
     char command, input_char, tmp;
 
@@ -45,14 +45,10 @@ int main() {
         }
     }
     while (!s1.empty()) {
-        s3.push(s1.top());
+        s2.push(s1.top());
         s1.pop();
     }
-    while (!s3.empty()) { //s1은 뒤집어서 출력
-        cout << s3.top();
-        s3.pop();
-    }
-    while (!s2.empty()) { //s2는 그대로 출력
+    while (!s2.empty()) { //s2 출력
         cout << s2.top();
         s2.pop();
     }
