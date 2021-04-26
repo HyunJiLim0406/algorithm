@@ -17,15 +17,15 @@ void bfs(pair<int, int> start) { //큐로 구현
 
     q.push(start);
     while (!q.empty()) { //큐에 들어있는 모든 원소에 대해 가능한 방향 체크
-        int col = q.front().first;
-        int row = q.front().second;
+        int row = q.front().first;
+        int col = q.front().second;
         q.pop();
         for (int i = 0; i < 4; i++) { //상하좌우 체크
-            int next_col = col + dir[i].first;
-            int next_row = row + dir[i].second;
-            if (matrix[next_col][next_row] == 1) {
-                matrix[next_col][next_row] = matrix[col][row] + 1; //matrix[next_col][next_row]를 오기 위해 몇 번 거쳐야 하는가?
-                q.push(make_pair(next_col, next_row));
+            int next_row = row + dir[i].first;
+            int next_col = col + dir[i].second;
+            if (matrix[next_row][next_col] == 1) {
+                matrix[next_row][next_col] = matrix[row][col] + 1; //matrix[next_row][next_col]를 오기 위해 몇 번 거쳐야 하는가?
+                q.push(make_pair(next_row, next_col));
             }
         }
     }

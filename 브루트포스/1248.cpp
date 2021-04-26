@@ -8,7 +8,7 @@ int arr[10], N;
 bool isFound;
 
 bool isPromising(int cnt, int sum) {
-    for (int i = 0; i <= cnt; i++) { //cmp[0][cnt]~cmp[cnt][cnt]까지 행 1개 확인
+    for (int i = 0; i <= cnt; i++) { //cmp[0][cnt]~cmp[cnt][cnt]까지 열 1개 확인
         if ((cmp[i][cnt] == '+') && (sum <= 0)) //+인데 0보다 작거나 같으면 안됨
             return false;
         else if ((cmp[i][cnt] == '-') && (sum >= 0)) //-인데 0보다 크거나 같으면 안됨

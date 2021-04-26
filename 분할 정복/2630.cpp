@@ -5,9 +5,9 @@ using namespace std;
 int paper[128][128];
 int colors[2]; //colors[0] = white, colors[1] = blue
 
-bool isSame(int size, int col, int row, int color) {
-    for (int i = col; i < (size + col); i++) {
-        for (int j = row; j < (size + row); j++) {
+bool isSame(int size, int row, int col, int color) {
+    for (int i = row; i < (size + row); i++) {
+        for (int j = col; j < (size + col); j++) {
             if (paper[i][j] != color)
                 return false;
         }
@@ -15,16 +15,16 @@ bool isSame(int size, int col, int row, int color) {
     return true;
 }
 
-void divide(int size, int col, int row) {
-    int color = paper[col][row];
+void divide(int size, int row, int col) {
+    int color = paper[row][col];
 
-    if (isSame(size, col, row, color)) { //종이의 색이 모두 같음
+    if (isSame(size, row, col, color)) { //종이의 색이 모두 같음
         colors[color]++;
     } else { //분할
         int resize = size / 2;
         for (int i = 0; i <= resize; i += resize)
             for (int j = 0; j <= resize; j += resize)
-                divide(resize, col + i, row + j);
+                divide(resize, row + i, col + j);
     }
 }
 

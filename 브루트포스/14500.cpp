@@ -10,18 +10,18 @@ pair<int, int> dir[4] = {{-1, 0},  //상
                          {0,  -1}, //좌
                          {0,  1}}; //우
 
-void horn(int col, int row, int sum) { //matrix[col][row]가 + 모양의 정 가운데가 될 것
+void horn(int row, int col, int sum) { //matrix[row][col]가 + 모양의 정 가운데가 될 것
     int cnt = 0;
     int arr[4] = {0}; //상하좌우의 값 저장
 
     for (int i = 0; i < 4; i++) {
-        int nc = col + dir[i].first;
-        int nr = row + dir[i].second;
+        int nr = row + dir[i].first;
+        int nc = col + dir[i].second;
 
-        if ((nc >= 0) && (nc < N) && (nr >= 0) && (nr < M)) { //범위에 들어오면 저장
+        if ((nr >= 0) && (nr < N) && (nc >= 0) && (nc < M)) { //범위에 들어오면 저장
             cnt++;
-            arr[i] = matrix[nc][nr];
-            sum += matrix[nc][nr];
+            arr[i] = matrix[nr][nc];
+            sum += matrix[nr][nc];
         }
     }
 
@@ -39,22 +39,22 @@ void horn(int col, int row, int sum) { //matrix[col][row]가 + 모양의 정 가
     return;
 }
 
-void tetromino(int col, int row, int num, int sum) {
+void tetromino(int row, int col, int num, int sum) {
     if (num == 4) { //백트래킹 종료 조건
         if (sum > local_max)
             local_max = sum;
         return;
     }
 
-    int value = matrix[col][row];
+    int value = matrix[row][col];
     for (int i = 0; i < 4; i++) {
-        int nc = col + dir[i].first;
-        int nr = row + dir[i].second;
+        int nr = row + dir[i].first;
+        int nc = col + dir[i].second;
 
-        if ((nc >= 0) && (nc < N) && (nr >= 0) && (nr < M) && (matrix[nc][nr] != 0)) { //범위에 들어왔고 unvisited 라면
-            matrix[col][row] = 0; //visited 처리
-            tetromino(nc, nr, num + 1, sum + matrix[nc][nr]); //백트래킹 탐색
-            matrix[col][row] = value; //unvisited 처리
+        if ((nr >= 0) && (nr < N) && (nc >= 0) && (nc < M) && (matrix[nr][nc] != 0)) { //범위에 들어왔고 unvisited 라면
+            matrix[row][col] = 0; //visited 처리
+            tetromino(nr, nc, num + 1, sum + matrix[nr][nc]); //백트래킹 탐색
+            matrix[row][col] = value; //unvisited 처리
         }
     }
 }

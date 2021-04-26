@@ -5,8 +5,8 @@
 
 using namespace std;
 
-struct pos_info { //열, 행, 파괴 횟수
-    int col_s, row_s, crush_s;
+struct pos_info { //행, 열, 파괴 횟수
+    int row_s, col_s, crush_s;
 };
 
 int N, M;
@@ -22,23 +22,23 @@ int bfs() {
     dq.push_back({0, 0, 0});
     matrix[0][0] = -1; //visited 처리
     while (!dq.empty()) {
-        int col = dq.front().col_s;
         int row = dq.front().row_s;
+        int col = dq.front().col_s;
         int crush = dq.front().crush_s;
         dq.pop_front();
-        if ((col == (N - 1)) && (row == (M - 1))) //종료 조건
+        if ((row == (N - 1)) && (col == (M - 1))) //종료 조건
             return crush;
 
         for (int i = 0; i < 4; i++) {
-            int nc = col + dir[i].first;
-            int nr = row + dir[i].second;
-            if ((nc >= 0) && (nc < N) && (nr >= 0) && (nr < M)) { //범위 내에 들어왔고
-                if (matrix[nc][nr] == 0) { //길이라면
-                    matrix[nc][nr] = -1;
-                    dq.push_front({nc, nr, crush}); //우선 처리
-                } else if (matrix[nc][nr] == 1) { //벽이라면
-                    matrix[nc][nr] = -1;
-                    dq.push_back({nc, nr, crush + 1}); //후순위 처리
+            int nr = row + dir[i].first;
+            int nc = col + dir[i].second;
+            if ((nr >= 0) && (nr < N) && (nc >= 0) && (nc < M)) { //범위 내에 들어왔고
+                if (matrix[nr][nc] == 0) { //길이라면
+                    matrix[nr][nc] = -1;
+                    dq.push_front({nr, nc, crush}); //우선 처리
+                } else if (matrix[nr][nc] == 1) { //벽이라면
+                    matrix[nr][nc] = -1;
+                    dq.push_back({nr, nc, crush + 1}); //후순위 처리
                 }
             }
         }

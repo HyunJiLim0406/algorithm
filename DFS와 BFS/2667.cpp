@@ -15,13 +15,13 @@ pair<int, int> dir[4] = {{-1, 0},  //상
                          {0,  1}}; //우
 
 void dfs(pair<int, int> pos) { //같은 단지에 속한 집을 찾는 dfs
-    for (int i = 0; i < 4; i++) { //현위치의 상하좌우 좌표를 col, row에 저장
-        int col = pos.first + dir[i].first;
-        int row = pos.second + dir[i].second;
-        if (matrix[col][row] == 1) { //방문한 적 없는 집(leaf)
+    for (int i = 0; i < 4; i++) { //현위치의 상하좌우 좌표를 row, col에 저장
+        int row = pos.first + dir[i].first;
+        int col = pos.second + dir[i].second;
+        if (matrix[row][col] == 1) { //방문한 적 없는 집(leaf)
             local_cnt++; //해당 단지의 집의 수 증가
-            matrix[col][row] = 0; //방문 체크
-            pair<int, int> next_pos = {col, row};
+            matrix[row][col] = 0; //방문 체크
+            pair<int, int> next_pos = {row, col};
             dfs(next_pos); //재귀 호출
         }
     }

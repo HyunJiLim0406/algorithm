@@ -21,23 +21,23 @@ int bfs(pair<int, int> start, pair<int, int> end, vector<pair<int, int>> water) 
     q.push(start); //고슴도치 정보 투입
     dist[start.first][start.second] = 1; //시작점 visited 체크
     while (!q.empty()) {
-        int col = q.front().first;
-        int row = q.front().second;
+        int row = q.front().first;
+        int col = q.front().second;
         if (dist[end.first][end.second]) //도착점의 dist 값이 0이 아니면
             return dist[end.first][end.second] - 1;
         q.pop();
 
         for (int i = 0; i < 4; i++) {
-            int nc = col + dir[i].first;
-            int nr = row + dir[i].second;
-            if ((nc >= 0) && (nc < R) && (nr >= 0) && (nr < C)) { //범위 확인
-                if ((dist[col][row] != 0) && (dist[nc][nr] == 0) &&
-                    ((map[nc][nr] == '.') || (map[nc][nr] == 'D'))) { //고슴도치 이동
-                    dist[nc][nr] = dist[col][row] + 1;
-                    q.push(make_pair(nc, nr));
-                } else if ((map[col][row] == '*') && (map[nc][nr] == '.')) { //홍수 이동
-                    map[nc][nr] = '*';
-                    q.push(make_pair(nc, nr));
+            int nr = row + dir[i].first;
+            int nc = col + dir[i].second;
+            if ((nr >= 0) && (nr < R) && (nc >= 0) && (nc < C)) { //범위 확인
+                if ((dist[row][col] != 0) && (dist[nr][nc] == 0) &&
+                    ((map[nr][nc] == '.') || (map[nr][nc] == 'D'))) { //고슴도치 이동
+                    dist[nr][nc] = dist[row][col] + 1;
+                    q.push(make_pair(nr, nc));
+                } else if ((map[row][col] == '*') && (map[nr][nc] == '.')) { //홍수 이동
+                    map[nr][nc] = '*';
+                    q.push(make_pair(nr, nc));
                 }
             }
         }

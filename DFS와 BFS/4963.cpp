@@ -5,14 +5,14 @@ using namespace std;
 int matrix[50][50];
 int h, w;
 
-void dfs(int col, int row) {
-    matrix[col][row] = 0; //visited 처리
+void dfs(int row, int col) {
+    matrix[row][col] = 0; //visited 처리
     for (int i = -1; i <= 1; i++) {
         for (int j = -1; j <= 1; j++) {
-            int nc = col + i;
-            int nr = row + j;
-            if ((nc >= 0) && (nc < h) && (nr >= 0) && (nr < w) && matrix[nc][nr]) //범위 내에 있는 육지인가?
-                dfs(nc, nr);
+            int nr = row + i;
+            int nc = col + j;
+            if ((nr >= 0) && (nr < h) && (nc >= 0) && (nc < w) && matrix[nr][nc]) //범위 내에 있는 육지인가?
+                dfs(nr, nc);
         }
     }
 }

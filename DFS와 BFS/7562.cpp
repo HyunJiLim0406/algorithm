@@ -20,16 +20,16 @@ int bfs(pair<int, int> start, pair<int, int> end) {
 
     q.push(start);
     while (matrix[end.first][end.second] == 0) { //도착점 도달하면 반복 종료
-        int col = q.front().first;
-        int row = q.front().second;
+        int row = q.front().first;
+        int col = q.front().second;
         q.pop();
         for (int i = 0; i < 8; i++) { //방향 체크
-            int next_col = col + dir[i].first;
-            int next_row = row + dir[i].second;
-            if ((next_col >= 0) && (next_col < l) && (next_row >= 0) && (next_row < l) && //범위 체크
-                (matrix[next_col][next_row] == 0)) { //방문 체크
-                matrix[next_col][next_row] = matrix[col][row] + 1; //matrix[next_col][next_row]를 오기 위해 몇 번 거쳐야 하는가?
-                q.push(make_pair(next_col, next_row));
+            int next_row = row + dir[i].first;
+            int next_col = col + dir[i].second;
+            if ((next_row >= 0) && (next_row < l) && (next_col >= 0) && (next_col < l) && //범위 체크
+                (matrix[next_row][next_col] == 0)) { //방문 체크
+                matrix[next_row][next_col] = matrix[row][col] + 1; //matrix[next_row][next_col]를 오기 위해 몇 번 거쳐야 하는가?
+                q.push(make_pair(next_row, next_col));
             }
         }
     }
