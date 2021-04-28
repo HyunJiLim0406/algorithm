@@ -37,13 +37,11 @@ int main() {
     string input;
 
     cin >> N >> M;
-    board.assign(N, vector<pair<char, bool>>(M));
+    board.assign(N, vector<pair<char, bool>>(M, make_pair(0, false)));
     for (int i = 0; i < N; i++) {
         cin >> input;
-        for (int j = 0; j < M; j++) {
+        for (int j = 0; j < M; j++)
             board[i][j].first = input[j];
-            board[i][j].second = false;
-        }
     }
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < M; j++) {

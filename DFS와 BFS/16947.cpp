@@ -7,17 +7,18 @@ using namespace std;
 vector<vector<int>> graph;
 vector<int> status;
 vector<bool> cycle;
-bool isCycle, isFound;
+int isCycle;
 
 void dfs(int start, int cur, int source) { //시작 정점, 현재 정점, 직전 정점
     if (status[cur]) { //이미 방문한 정점을 갔는데
         if (cur == start) //시작 정점이면 사이클
-            isCycle = true;
-        isFound = true; //사이클이 아님
+            isCycle = 1;
+        else
+            isCycle = 2; //사이클이 아님
         return;
     }
     status[cur] = 1; //방문 처리
-    for (int i = 0; i < graph[cur].size() && !isFound; i++) {
+    for (int i = 0; i < graph[cur].size() && !isCycle; i++) {
         if (graph[cur][i] != source) { //직전 정점이 아니면 연결된 정점 탐색
             dfs(start, graph[cur][i], cur);
         }
@@ -61,9 +62,9 @@ int main() {
 
     for (int i = 1; i <= N; i++) { //모든 정점에 대해 사이클에 포함된 정점이 맞는지 체크
         status.assign(N + 1, 0);
-        isCycle = isFound = false;
+        isCycle = 0;
         dfs(i, i, -1);
-        if (isCycle)
+        if (isCycle==1)
             cycle[i] = true;
     }
 
