@@ -15,9 +15,9 @@ bool cmpString(string str1, string str2) { //연결할 수 있는 단어인지 �
         if (str1[i] != str2[i])
             cnt++;
     }
-    if (cnt > 1)
-        return false;
-    return true;
+    if (cnt == 1)
+        return true;
+    return false;
 }
 
 int bfs(string begin, string target) {
@@ -46,7 +46,7 @@ int solution(string begin, string target, vector<string> words) {
     for (int i = 0; i < words.size(); i++) {
         vector<string> tmp;
         for (int j = 0; j < words.size(); j++) {
-            if ((i != j) && cmpString(words[i], words[j])) //연결가능하면 투입
+            if (cmpString(words[i], words[j])) //연결가능하면 투입
                 tmp.push_back(words[j]);
         }
         graph[words[i]] = tmp;
@@ -55,17 +55,7 @@ int solution(string begin, string target, vector<string> words) {
     return answer;
 }
 
-// 6 hit cog hot dot dog lot log cog
-// 5 hit cog hot dot dog lot log
 int main() {
-    string begin, target, input;
-    vector<string> words;
-    int size;
-
-    cin >> size >> begin >> target;
-    for (int i = 0; i < size; i++) {
-        cin >> input;
-        words.push_back(input);
-    }
-    cout << solution(begin, target, words);
+    cout << solution("hit", "cog", {"hot", "dot", "dog", "lot", "log", "cog"}) << '\n';
+    cout << solution("hit", "cog", {"hot", "dot", "dog", "lot", "log"}) << '\n';
 }
