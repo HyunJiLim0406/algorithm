@@ -12,15 +12,11 @@ int main() {
 
     cin >> N >> M;
     b.assign(N + 1, vector<int>(N + 1, 0));
-    for (int i = 1; i <= N; i++) { //가로 누적
+    for (int i = 1; i <= N; i++) { //가로 세로 누적
         for (int j = 1; j <= N; j++) {
             cin >> input;
-            b[i][j] = input + b[i][j - 1];
+            b[i][j] = input + b[i][j - 1] + b[i - 1][j] - b[i - 1][j - 1];
         }
-    }
-    for (int i = 1; i <= N; i++) { //세로 누적
-        for (int j = 1; j <= N; j++)
-            b[i][j] += b[i - 1][j];
     }
     for (int i = 0; i < M; i++) {
         cin >> x1 >> y1 >> x2 >> y2;
