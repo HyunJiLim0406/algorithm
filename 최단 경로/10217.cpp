@@ -28,9 +28,8 @@ int dijkstra(int start, int end, int M) {
 
             if ((new_cost <= M) && (dp[dest][new_cost] > new_dist)) { //비용이 M 이하이고, 기존의 최단거리보다 짧다면
                 int tmp = new_cost;
-                while (tmp <= M) { //갱신할 수 있는 곳까지 갱신
-                    if (dp[dest][tmp] > new_dist)
-                        dp[dest][tmp] = new_dist;
+                while ((tmp <= M) && (dp[dest][tmp] > new_dist)) { //갱신할 수 있는 곳까지 갱신
+                    dp[dest][tmp] = new_dist;
                     tmp++;
                 }
                 pq.push(make_tuple(new_dist, new_cost, dest)); //우선순위 큐에 삽입
