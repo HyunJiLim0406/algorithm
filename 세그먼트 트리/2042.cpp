@@ -7,7 +7,7 @@ using namespace std;
 typedef long long ll;
 
 ll initTree(vector<ll> &seg_tree, vector<ll> &arr, int left, int right, int node) {
-    if (left == right) //left-node
+    if (left == right) //leaf-node
         return seg_tree[node] = arr[left];
     int mid = (left + right) / 2; //분할
     return seg_tree[node] =
@@ -18,7 +18,7 @@ void updateTree(vector<ll> &seg_tree, int pos, ll diff, int left, int right, int
     if (pos < left || pos > right) //범위를 벗어남
         return;
     seg_tree[node] += diff; //업데이트
-    if (left == right) //left-node
+    if (left == right) //leaf-node
         return;
     int mid = (left + right) / 2; //분할
     updateTree(seg_tree, pos, diff, left, mid, node * 2);
