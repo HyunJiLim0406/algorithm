@@ -10,7 +10,7 @@ const int INF = 1e9;
 vector<vector<pp>> graph; //그래프 정보
 vector<int> min_dist; //최단 경로
 
-void dijkstra(int start) {
+int dijkstra(int start, int end) {
     priority_queue<pp, vector<pp>, greater<pp>> pq;
     min_dist[start] = 0; //시작점의 최단 경로 초기화
     pq.push(make_pair(0, start));
@@ -19,6 +19,8 @@ void dijkstra(int start) {
         int cur = pq.top().second; //현재 정점
         pq.pop();
 
+        if (cur == end)
+            return min_dist[end];
         for (int i = 0; i < graph[cur].size(); i++) {
             int new_dist = cur_dist + graph[cur][i].second; //cur을 거친 거리
             if (new_dist < min_dist[graph[cur][i].first]) { //이게 최단 경로일 수 있다면 갱신
@@ -27,6 +29,7 @@ void dijkstra(int start) {
             }
         }
     }
+    return -1;
 }
 
 int main() {
@@ -40,6 +43,5 @@ int main() {
         graph[s].push_back(make_pair(d, w));
     }
     cin >> s >> d;
-    dijkstra(s); //시작점에 대한 다익스트라
-    cout << min_dist[d];
+    cout << dijkstra(s, d); //시작점에 대한 다익스트라
 }
