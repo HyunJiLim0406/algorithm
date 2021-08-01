@@ -10,7 +10,7 @@ void fillDp() {
         dp[1][i] = 1;
     for (int i = 2; i <= 64; i++) {
         for (int j = 0; j < 10; j++) {
-            dp[i][j] = dp[i - 1][j]; 
+            dp[i][j] = dp[i - 1][j];
             if (j != 0)
                 dp[i][j] += dp[i][j - 1];
         }
