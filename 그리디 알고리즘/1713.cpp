@@ -45,6 +45,8 @@ int main() {
          [](const info &i1, const info &i2) {
              return i1.student < i2.student;
          });
-    for (auto stu:photo)
-        cout << stu.student << ' ';
+    for (auto stu:photo) {
+        if (stu.student != -1)
+            cout << stu.student << ' ';
+    }
 }
