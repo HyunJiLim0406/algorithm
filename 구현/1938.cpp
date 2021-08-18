@@ -50,7 +50,7 @@ int bfs(int N, info start, info end) {
             dist[nr][nc][d] = distance + 1;
             q.push({nr, nc, d});
         }
-        if (promising(N, row - 1, row + 1, col - 1, col + 1) && dist[row][col][(d + 1) % 2] == 0) { //회전
+        if (promising(N, row - 1, row + 1, col - 1, col + 1) && !dist[row][col][(d + 1) % 2]) { //회전
             dist[row][col][(d + 1) % 2] = distance + 1;
             q.push({row, col, (d + 1) % 2});
         }
