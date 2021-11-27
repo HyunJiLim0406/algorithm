@@ -9,7 +9,7 @@ vector<vector<char>> board;
 bool find(int n, int r, int c) {
     int dr[4] = {-1, 1, 0, 0};
     int dc[4] = {0, 0, -1, 1};
-    
+
     for (int i = 0; i < 4; i++) {
         int row = r, col = c;
         while (row >= 0 && row < n && col >= 0 && col < n && board[row][col] != 'O') {
