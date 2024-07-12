@@ -13,11 +13,11 @@ class Solution:
         return ''.join(stack), score
 
     def maximumGain(self, s: str, x: int, y: int) -> int:
-        if x > y:
-            string1, score1 = self.calculate(s, "ab", x)
-            string2, score2 = self.calculate(string1, "ba", y)
-            return score1 + score2
-        else:
-            string1, score1 = self.calculate(s, "ba", y)
-            string2, score2 = self.calculate(string1, "ab", x)
-            return score1 + score2
+        x_str, y_str = "ab", "ba"
+        if x < y:
+            x_str, y_str = "ba", "ab"
+            x, y = y, x
+        string1, score1 = self.calculate(s, x_str, x)
+        string2, score2 = self.calculate(string1, y_str, y)
+        return score1 + score2
+        
