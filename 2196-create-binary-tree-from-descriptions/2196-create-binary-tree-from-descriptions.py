@@ -27,5 +27,5 @@ class Solution:
             else:
                 tree[parent].right = tree[child]
 
-        root = self.findRoot(hasParent, list(map(lambda x: x[0], descriptions)))
+        root = self.findRoot(hasParent, [sublist[0] for sublist in descriptions])
         return tree[root]
