@@ -12,7 +12,11 @@ class Solution:
         nextArr = arr.copy()
         nextArr.append(candidates[index])
         self.backtracking(target, candidates, nextArr, index + 1)
-        self.backtracking(target, candidates, arr, index + 1)
+        
+        index += 1
+        while index < len(candidates) and nextArr[-1] == candidates[index]:
+            index += 1
+        self.backtracking(target, candidates, arr, index)
     
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         self.backtracking(target, sorted(candidates), [], 0)
