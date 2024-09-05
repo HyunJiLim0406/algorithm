@@ -12,6 +12,9 @@ class Solution:
             extra = min(6 - result[i], target)
             result[i] += extra
             target -= extra
+            if target == 0:
+                break
+                
         if target != 0:
             return []
         return result
