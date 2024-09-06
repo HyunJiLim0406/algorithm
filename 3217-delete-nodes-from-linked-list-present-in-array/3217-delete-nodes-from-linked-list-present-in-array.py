@@ -5,9 +5,7 @@
 #         self.next = next
 class Solution:
     def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:
-        numSet = set()
-        numSet.update(nums)
-        before, pointer = None, head
+        numSet, before, pointer = set(nums), None, head
         while pointer:
             if pointer.val in numSet:
                 if before == None:
