@@ -7,8 +7,7 @@ class Solution:
     def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:
         numSet = set()
         numSet.update(nums)
-        before = None
-        pointer = head
+        before, pointer = None, head
         while pointer:
             if pointer.val in numSet:
                 if before == None:
