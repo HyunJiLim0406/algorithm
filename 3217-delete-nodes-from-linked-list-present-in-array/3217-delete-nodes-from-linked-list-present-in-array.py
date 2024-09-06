@@ -9,17 +9,13 @@ class Solution:
         numSet.update(nums)
         before = None
         pointer = head
-        while pointer.next:
+        while pointer:
             if pointer.val in numSet:
                 if before == None:
-                    pointer = head.next
                     head = head.next
                 else:
                     before.next = pointer.next
-                    pointer = pointer.next
             else:
                 before = pointer
-                pointer = pointer.next
-        if pointer.val in nums:
-            before.next = None
+            pointer = pointer.next
         return head
