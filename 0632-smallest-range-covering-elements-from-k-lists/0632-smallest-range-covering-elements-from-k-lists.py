@@ -18,8 +18,7 @@ class Solution:
 
         while True:
             minNum, numIdx, idx = heapq.heappop(heap)
-            if maxNum - minNum < result[1] - result[0]:
-                result = self.smaller([minNum, maxNum], result)
+            result = self.smaller([minNum, maxNum], result)
             if len(nums[numIdx]) == idx + 1:
                 break
             nextNum = nums[numIdx][idx + 1]
