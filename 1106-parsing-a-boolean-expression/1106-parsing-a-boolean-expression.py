@@ -3,15 +3,9 @@ class Solution:
         if op == '!':
             return 'f' if chars[0] == 't' else 't'
         elif op == '&':
-            for char in chars:
-                if char == 'f':
-                    return 'f'
-            return 't'
+            return 'f' if 'f' in chars else 't'
         elif op == '|':
-            for char in chars:
-                if char == 't':
-                    return 't'
-            return 'f'
+            return 't' if 't' in chars else 'f'
 
     def parseBoolExpr(self, expression: str) -> bool:
         stack = []
@@ -29,5 +23,6 @@ class Solution:
                     chars.append(char)
             result = self.calculate(chars, stack.pop())
             stack.append(result)
+            
         return False if stack.pop() == 'f' else True
         
